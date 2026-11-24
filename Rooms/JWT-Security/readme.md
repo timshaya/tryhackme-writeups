@@ -87,7 +87,7 @@ While it is uncommon to find APIs where no signature validation is performed, si
 
 ```bash 
 #authenticate to the API:
-curl -H 'Content-Type: application/json' -X POST -d '{ "username" : "user", "password" : "password2" }' http://10.64.186.98/api/v1.0/example2
+curl -H 'Content-Type: application/json' -X POST -d '{ "username" : "user", "password" : "*" }' http://10.64.186.98/api/v1.0/example2
 
 {
 "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJhZG1pbiI6MH0.UWddiXNn-PSpe7pypTWtSRZJi1wr2M5cpr_8uWISMS4"
@@ -244,7 +244,7 @@ Once the secret value is known, you can again alter the claims in your JWT and r
 
 Authenticated via POST to grab the JWT: 
 ```bash 
-curl -H 'Content-Type: application/json' -X POST -d '{ "username" : "user", "password" : "password4" }' http://10.64.186.98/api/v1.0/example4
+curl -H 'Content-Type: application/json' -X POST -d '{ "username" : "user", "password" : "*" }' http://10.64.186.98/api/v1.0/example4
 {
 "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJhZG1pbiI6MH0.yN1f3Rq8b26KEUYHCZbEwEk6LVzRYtbGzJMFIF8i5HY"
 }
