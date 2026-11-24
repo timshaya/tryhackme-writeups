@@ -28,6 +28,13 @@ Walk-throughs and write-ups for TryHackMe rooms I've completed. Each write up in
         <td>CTF, ghostcat vulnerability, Nmap, Gobuster</td>
     </tr>
     <tr>
+        <td><a href="Rooms/Metasploit-Exploitation/readme.md">Metasploit: Exploitation</a></td>
+        <td>Easy</td>
+        <td>Linux</td>
+        <td>In progress</td>
+        <td>Learning module</td>
+    </tr>        
+    <tr>
         <td>Crack the Hash</td>
         <td>Easy</td>
         <td>Linux</td>
