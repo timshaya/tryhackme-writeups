@@ -21,11 +21,11 @@ Walk-throughs and write-ups for TryHackMe rooms I've completed. Each write up in
         <td>CTF, Signature Validation, Signature Algorithm Downgrade, Weak Symmetric Secrets, Signature Algorithm Confusion, exp, Cross-Service Relay</td>
     </tr>
     <tr>
-        <td>tomghost</td>
+        <td><a href="Rooms/Tomghost/readme.md">tomghost</a></td>
         <td>Easy</td>
         <td>Linux</td>
         <td>Tomcat - ID'd recent vulnerabilities to try exploit the system, read files that you should not have access to.</td>
-        <td>CTF, ghostcat vulnerability, Nmap, Gobuster</td>
+        <td>CTF, ghostcat vulnerability, Nmap, Gobuster, GTFObins, privelege escalation</td>
     </tr>
     <tr>
         <td><a href="Rooms/Metasploit-Exploitation/readme.md">Metasploit: Exploitation</a></td>
