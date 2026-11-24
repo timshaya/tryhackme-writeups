@@ -1,6 +1,6 @@
 # TryHackMe Write Ups 
 
-Walk-throughs and write-ups for TryHackMe rooms I've completed. Each write up includes the steps I took to complete the practical tasks & what I learned along the way. Each room will have its own folder under Room/.
+Walk-throughs and write-ups for TryHackMe rooms I've completed. Each write up includes the steps I took to complete the practical tasks & what I learned along the way. Each room will have its own folder under Rooms/.
 
 <table>
 <thead>
@@ -17,7 +17,7 @@ Walk-throughs and write-ups for TryHackMe rooms I've completed. Each write up in
         <td><a href="Rooms/JWT-Security/readme.md">JWT Security</a></td>
         <td>Easy</td>
         <td>Linux</td>
-        <td>Focus on the 7 JWT vulenerability scenarios. Linked relevant CVEs at the top of each scenario.</td>
+        <td>Focus on the 7 JWT vulenerability scenarios mentioned in the THM room. Linked relevant CVEs at the top of each scenario.</td>
         <td>CTF, Signature Validation, Signature Algorithm Downgrade, Weak Symmetric Secrets, Signature Algorithm Confusion, exp, Cross-Service Relay</td>
     </tr>
     <tr>
