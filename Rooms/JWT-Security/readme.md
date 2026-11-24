@@ -9,6 +9,8 @@
 
 ## Task 4: Risk - Sensitive Information Disclosure 
 
+IRL example: ViDay, <a href="https://www.cve.org/CVERecord?id=CVE-2025-40646">CVE-2025-40646</a>, 5.9 Medium. 
+
 Unlike with cookies-based session management, token claims are may expose sensitive data as the entire JWT is sent client-side. Sensitive information may be disclosed without additional precautions taken on the dev side:  
 * Credential disclosure with the password hash, or even worse, the clear-text password being sent as a Claim.    
 * Exposure of internal network information such as the private IP or hostname of the authentication server.
@@ -66,23 +68,22 @@ flag = self.db_lookup(username, "flag")
 <br />
 
 
-## Task 5:  Signature Validation Mistakes - example 2 through 5 
 
+
+## Task 5:  Signature Validation Mistakes - Practical Example 2
+
+IRL example: ConvoyPanel, <a href="https://www.cve.org/CVERecord?id=CVE-2026-33746">CVE-2026-33746</a>, 9.8 Critical. 
 
 2nd common mistake with JWTs is not correctly verifying the signature. 
 
 If the signature isn't correctly verified, a threat actor may be able to forge a valid JWT token to gain access to another user's account. 
 
-
 Not Verifying the Signature
 
-    The first issue with signature validation is when there is no signature validation. If the server does not verify the signature of the JWT, then it is possible to modify the claims in the JWT to whatever you prefer them to be. 
-    
-        While it is uncommon to find APIs where no signature validation is performed, 
-            signature validation may have been omitted from a single endpoint within the API. 
-                Depending on the sensitivity of the endpoint, this can have a significant business impact.
+The first issue with signature validation is when there is no signature validation. If the server does not verify the signature of the JWT, then it is possible to modify the claims in the JWT to whatever you prefer them to be. 
 
-### Practical Example 2
+While it is uncommon to find APIs where no signature validation is performed, signature validation may have been omitted from a single endpoint within the API. Depending on the sensitivity of the endpoint, this can have a significant business impact.
+
 
 ```bash 
 #authenticate to the API:
@@ -166,7 +167,11 @@ payload = jwt.decode(token, self.secret, algorithms="HS256")
 
 
 
+
+
 ### Task 5: Downgrading "alg" to None - Practical Example 3:
+
+IRL example: Microsoft, <a href="https://www.cve.org/CVERecord?id=CVE-2023-29357">CVE-2023-29357</a>, 9.8 Critical. 
 
 Downgraded "alg" to "None" in header. Possible due to following API dev mistake: 
 ```python
@@ -229,37 +234,13 @@ curl -vvv -H "Authorization: Bearer eyAidHlwIjogIkpXVCIsImFsZyI6ICJOb25lIiB9.eyA
 
 
 
-
-
-
-
-
-
 ### Task 5: Weak Symmetric Secrets - Practical Example 4
 
-If a symmetric signing algorithm is used, the security of the JWT relies on the strength and entropy of the secret used. If a weak secret is used, it may be possible to perform 
-offline cracking to recover the secret. 
+IRL example: Microsoft, <a href="https://www.cve.org/CVERecord?id=CVE-2026-73576">CVE-2026-73576</a>, 6.3 Medium. 
+
+If a symmetric signing algorithm is used, the security of the JWT relies on the strength and entropy of the secret used. If a weak secret is used, it may be possible to perform offline cracking to recover the secret. 
 
 Once the secret value is known, you can again alter the claims in your JWT and recalculate a valid signature using the secret.
-
-
-    - Weak Symmetric Secret
-
-            For this example, a weak secret was used to generate the JWT. Once you receive a JWT, you have several options to crack the secret. For our example, we will talk about using Hashcat to crack the JWT's secret. You could also use other solutions such as John as well. You can use the following steps to crack the secret:
-
-            For this example, a weak secret was used to generate the JWT. 
-            
-            Once you receive a JWT, you have several options to crack the secret. For our example, we will talk about using Hashcat to crack the JWT's secret. You could also use other solutions such as John as well. You can use the following steps to crack the secret:
-
-                1. Save the JWT to a text file called jwt.txt.
-
-                2. Download a common JWT secret list. For this room, you can use wget https://raw.githubusercontent.com/wallarm/jwt-secrets/master/jwt.secrets.list to download such a list.
-
-                3. Use Hashcat to crack the secret using hashcat -m 16500 -a 0 jwt.txt jwt.secrets.list
-
-            Once you know what the secret is, you can forge a new admin token to recover the flag!
-
-
 
 Authenticated via POST to grab the JWT: 
 ```bash 
@@ -347,6 +328,8 @@ curl -vvv -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2V
 
 
 ### Task 5: Signature Algorithm Confusion - Practical Example 5 
+
+IRL example: xmidt-org, <a href="https://www.cve.org/CVERecord?id=CVE-2024-54150">CVE-2024-54150</a>, 8.7 High. 
 
 If an asymmetric signing algorithm like RS256 is used alongside symmetric algorithms like HS256 without logical separation in the application code, it may be possible to downgrade the token's algorithm to HS256 and executed a Signature Algorithm Confusion attack. 
 
@@ -473,6 +456,8 @@ flag = self.db_lookup(username, "flag")
 
 ## Task 6: JWT Lifetimes - Practical Example 6
 
+IRL example: xmidt-org, <a href="https://www.cve.org/CVERecord?id=CVE-2026-110024">CVE-2026-110024</a>, 6.8 Medium. 
+
 In this example, the JWT implementation did not specify an exp value, meaning tokens are permanently persistent. Use the token below to recover your flag: 
 ```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJhZG1pbiI6MX0.ko7EQiATQQzrQPwRO8ZTY37pQWGLPZWEvdWH0tVDNPU```
 
@@ -536,12 +521,14 @@ access_token = jwt.encode(payload, self.secret, algorithm="HS256")
 
 ## Task 7: Cross-Service Relay Attacks - Practical Example 7
 
+IRL example: Apache, <a href="https://www.cve.org/CVERecord?id=CVE-2026-50627">CVE-2026-50627</a> 9.1 Critical / 8.1 High. 
+
 JWTs are sometimes used in systems with a centralised authentication system that serves multiple applications. 
 However, in some cases, we may want to restrict which applications are accessed with a JWT, especially when there are claims that should only be valid for certain applications. This can be done by using the audience claim.
 
 If the audience claim isn't correctly enforced, a Cross-Service Relay attack can be executed to perform a privilege escalation attack.
 
-Here there's 1 central auth server, example7m, and two applications example7_appA and example7_appB. 
+Here there's 1 central auth server, example7, and two applications example7_appA and example7_appB. 
 
 ----------
 ----------
@@ -719,7 +706,7 @@ Content-Length: 86
 ```            
 
 
-## Conclusion: 
+## The Issue: 
 
 A JWT with Audience Claim ("aud": "appB") and Admin Claim ("admin":1) allowed unexpected Admin access to appA, while also granting expected Admin access to appB, demonstrating a potential Cross-Service Relay Attack. 
 
