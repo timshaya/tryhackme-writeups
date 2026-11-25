@@ -21,7 +21,6 @@ Front-End-Https: on
 THM{NmNlZxxxxxxxxxxxxxxxxxxxxxxxxxxx}
 ```
 
-[screenshot]
 <img src="images/task10_1.png" alt="task10_burpsuitebasics_1" width="800" /><br/><br />
 
 
