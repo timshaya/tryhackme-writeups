@@ -22,13 +22,13 @@ THM{NmNlZxxxxxxxxxxxxxxxxxxxxxxxxxxx}
 ```
 
 [screenshot]
-<img src="images/task10_burpsuitebasics_1.png" alt="task10_burpsuitebasics_1" width="600" /><br/><br />
+<img src="images/task10_1.png" alt="task10_burpsuitebasics_1" width="800" /><br/><br />
 
 
 
 ### Task 12: Scoping and Targetting 
 
-<img src="images/task12_burpsuitebasics.png" alt="task12_burpsuitebasics" width="600" /><br/><br />
+<img src="images/task12.png" alt="task12_burpsuitebasics" width="800" /><br/><br />
 
 
 
@@ -60,13 +60,13 @@ With the request captured in the proxy, we can now change the email field to be 
 ```javascript 
 <script>alert("Succ3ssful XSS")</script>
 ``` 
-<img src="images/task14_1.png" alt="Raw form field values in Request using Burp" width="600"><br />
-<img src="images/task14_2.png" alt="select email param value" width="600"><br />
+<img src="images/task14_1.png" alt="Raw form field values in Request using Burp" width="800"><br />
+<img src="images/task14_2.png" alt="select email param value" width="800"><br />
 
 After pasting in the payload, we need to select it, then URL encode it with the Ctrl + U shortcut to make it safe to send. <br />
 
-<img src="images/task14_3.png" alt="url encode - Ctrl+U" width="600"><br />
-<img src="images/task14_4.png" alt="popup: Succ3ssful XSS" width="600"><br />
+<img src="images/task14_3.png" alt="url encode - Ctrl+U" width="800"><br />
+<img src="images/task14_4.png" alt="popup: Succ3ssful XSS" width="800"><br />
 
 
 
